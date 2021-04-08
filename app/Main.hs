@@ -1,5 +1,5 @@
 module Main where
 
-import           Lib
+import           Parser
 main :: IO ()
-main = someFunc
+main = putStrLn "Hello World!"

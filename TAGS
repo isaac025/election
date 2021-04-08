@@ -6,9 +6,8 @@ main main3,4
 ./test/Spec.hs,15
 main main0,1
 
-./src/Lib.hs,42
-module LibLib0,1
-someFunc someFunc4,5
+./src/Lib.hs,25
+module ParserParser0,1
 
 ./Setup.hs,15
 main main1,2
