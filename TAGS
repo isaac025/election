@@ -6,8 +6,14 @@ main main3,4
 ./test/Spec.hs,15
 main main0,1
 
-./src/Lib.hs,25
+./src/ElectionUtil.hs,58
+module ElectionUtilElectionUtil0,1
+toTuple toTuple4,5
+
+./src/Parser.hs,89
 module ParserParser0,1
+getCSVContents getCSVContents7,8
+removePunc removePunc10,11
 
 ./Setup.hs,15
 main main1,2

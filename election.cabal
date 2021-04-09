@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 89858b78a5d7a2a14ce12925060a636e1bee2a781a65fa6482abdde73093d4d5
+-- hash: 3dc050c660a8f20106e30e014ecfdc0a9ae85261b176cc572f86a8cec55eb111
 
 name:           election
 version:        0.1.0.0
@@ -27,6 +27,7 @@ source-repository head
 
 library
   exposed-modules:
+      ElectionUtil
       Parser
   other-modules:
       Paths_election
