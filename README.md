@@ -13,10 +13,12 @@ $ ./app/script.sh
 ```
 **I do not know how to run a script in Windows sorry! I understand that [Powershell](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows?view=powershell-7.1) can run it.**
 
-Then follow what it asks you. And voila you have run an election and see the winner!
+Then follow what it asks you 
 
 ## How it works
 
+If you wish to build your own read [this pdf](./p1_c4020_i4035_192.pdf) provided
+in the repo. You can implement it in any language!
 
 
 

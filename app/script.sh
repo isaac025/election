@@ -10,8 +10,8 @@ read candidates
 
 # Check first if the files are already created
 # and delete them to use new ones.
-CAND_FILE="../res/candidates.csv"
-BALLOTS_FILE="../res/ballots.csv"
+CAND_FILE="$HOME/Projects/Stream/election/res/candidates.csv"
+BALLOTS_FILE="$HOME/Projects/Stream/election/res/ballots.csv"
 if [[ -f "${CAND_FILE}" ]] ;
 then
     rm -f "${CAND_FILE}"
