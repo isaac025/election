@@ -1,6 +1,6 @@
 module Parser
   ( getCSVContents
-  , removePunc
+  , removeCommas
   , toList
   ) where
 
@@ -9,8 +9,8 @@ import           System.IO ()
 getCSVContents :: FilePath -> IO String
 getCSVContents file = do readFile file
 
-removePunc :: String -> String
-removePunc = map (\x -> if x==',' then ' ' else x)
+removeCommas :: String -> String
+removeCommas = map (\x -> if x==',' then ' ' else x)
 
 toList :: String -> [String]
-toList contents = words $ removePunc contents
+toList contents = words $ removeCommas contents

@@ -29,6 +29,7 @@ library
   exposed-modules:
       ElectionUtil
       Parser
+      DataStructures
   other-modules:
       Paths_election
   hs-source-dirs:
