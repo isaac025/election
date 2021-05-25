@@ -1,40 +1,0 @@
-
-./test/Spec.hs,15
-main main0,1
-
-./app/Main.hs,103
-module Main Main1,2
-candidatesFile candidatesFile5,6
-ballotsFile ballotsFile8,9
-main main11,12
-
-./app/Election.hs,143
-module Election Election1,2
-runElection runElection8,9
-organizeCandidates organizeCandidates16,17
-organizeBallots organizeBallots19,20
-
-./src/ElectionUtil.hs,91
-module ElectionUtilElectionUtil0,1
-toTuple toTuple5,6
-ballotParser ballotParser12,13
-
-./src/Parser.hs,114
-module ParserParser0,1
-getCSVContents getCSVContents8,9
-removeCommas removeCommas11,12
-toList toList14,15
-
-./src/DataStructures.hs,281
-module DataStructuresDataStructures1,2
-data Candidate Candidate7,8
-data Candidate = CandidateCandidate7,8
-    { name name8,9
-    , id id9,10
-data Ballot Ballot13,14
-data Ballot = BallotBallot13,14
-    { ballotID ballotID14,15
-    , ballotsVotes ballotsVotes15,16
-
-./Setup.hs,15
-main main1,2
