@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 3dc050c660a8f20106e30e014ecfdc0a9ae85261b176cc572f86a8cec55eb111
+-- hash: 7db347ed4aa33a4e7f280bda6af402945faba62e4d38022565551173f530419f
 
 name:           election
 version:        0.1.0.0
@@ -27,21 +27,21 @@ source-repository head
 
 library
   exposed-modules:
+      DataStructures
       ElectionUtil
       Parser
-      DataStructures
   other-modules:
       Paths_election
   hs-source-dirs:
       src
   build-depends:
       base >=4.7 && <5
-    , text
   default-language: Haskell2010
 
 executable election-exe
   main-is: Main.hs
   other-modules:
+      Election
       Paths_election
   hs-source-dirs:
       app
@@ -49,7 +49,6 @@ executable election-exe
   build-depends:
       base >=4.7 && <5
     , election
-    , process
   default-language: Haskell2010
 
 test-suite election-test
