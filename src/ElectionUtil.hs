@@ -7,16 +7,15 @@ module ElectionUtil
 
 import           DataStructures (Ballot (..), Candidate (..))
 
-createCandidate :: (String,Int) -> [Int] -> Candidate
-createCandidate tuple votes = Candidate (fst tuple) (snd tuple) votes
+getIDVotes  :: Eq a1 => a1 -> [[(a1, a2)]] -> [a2]
+getIDVotes id xs = [snd y | x <- xs, y <- x, (fst y) == id]
 
-createCandidates :: [(String, Int)] -> [Int] -> [Candidate]
-createCandidates list votes = map (createCandidate list) votes
 
-getIDVotes :: Eq a1 => a1 -> [[(a1,a2)]] -> [a2]
-getIDVotes id list = asList $ map (takeWhile  ((==id) . fst)) list
-    where asList (x:xs) = head (map snd x):asList xs
-          asList _      = []
+createCandidate :: (String, Int) -> [[(Int, Int)]] -> Candidate
+createCandidate tuple votes = Candidate (fst tuple) (snd tuple) (getIDVotes (snd tuple) votes)
+
+createCandidates :: [(String, Int)] -> [[(Int, Int)]] -> [Candidate]
+createCandidates list votes = map (\x -> createCandidate x votes) list
 
 createBallot :: (Int, [(Int, Int)]) -> Ballot
 createBallot tuple = Ballot (fst tuple) (snd tuple)

@@ -6,9 +6,9 @@ module DataStructures
 
 -- Data for Candidate
 data Candidate = Candidate
-    { name      :: String
-    , id        :: Int
-    , candVotes :: [Int]
+    { name  :: String
+    , id    :: Int
+    , votes :: [Int]
     } deriving (Show, Eq)
 
 -- Data for Ballot

@@ -1,6 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Election ( runElection
+                , organizeBallots
                  ) where
 
 import           DataStructures (Ballot (..), Candidate (..))
@@ -10,12 +11,12 @@ import           Parser         (ballotParser, convert, getCSVContents,
                                  makeBallotsIntegers, toList, toTuple)
 
 runElection :: FilePath -> FilePath -> IO ()
-runElection candidateFile ballotsFile = do
-    candidatesContents  <- getCSVContents candidateFile
-    ballotsContents     <- getCSVContents ballotsFile
-    let ballots = createBallots $ organizeBallots ballotsContents -- set the string from the file to list of strings
-    let tuplesOfCands = organizeCandidates candidatesContents
-    let candidates = createCandidates $ tuplesOfCands (getIDVotes (fst tuplesOfCands) (map ballotsVotes ballots))
+runElection candidatesFile ballotsFile= do
+    ballotsContents <- getCSVContents ballotsFile
+    candidatesContents <- getCSVContents candidatesFile
+    let ballots = createBallots $ organizeBallots ballotsContents
+    let ballotVotes = map ballotsVotes ballots
+    let candidates = createCandidates (organizeCandidates candidatesContents) ballotVotes
     output $ show candidates
 
 organizeCandidates :: String -> [(String,Int)]
@@ -23,4 +24,5 @@ organizeCandidates candidates = toTuple $ toList candidates
 
 organizeBallots :: String -> [(Int, [(Int,Int)])]
 organizeBallots ballots = convert $ makeBallotsIntegers $ map (ballotParser (==':')) (toList ballots)
+
 
