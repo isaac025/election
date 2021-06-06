@@ -13,7 +13,7 @@ data Candidate = Candidate
 
 -- Data for Ballot
 data Ballot = Ballot
-    { ballotID     :: Int
-    , ballotsVotes :: [(Int,Int)]
+    { ballotID :: Int
+    , ranks    :: [(Int,Int)]
     } deriving (Show, Eq)
 
