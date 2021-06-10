@@ -42,14 +42,14 @@ ballotParser p s = case dropWhile p s of
 makeBallotsIntegers :: [[String]] -> [[Int]]
 makeBallotsIntegers xs = map (\x -> map (\y -> read y :: Int) x) xs
 
-output :: String -> String -> String -> IO ()
-output numOfBallots winnerName winnerVotes = do
+output :: String -> String -> String -> String -> IO ()
+output numOfBallots blankBallots invalidBallots winnerName winnerVotes = do
   let file = "/home/isaac/Projects/personal/election/res/output.txt"
   writeFile file string
   contents <- readFile file
   putStrLn contents
-    where string = "•Number of ballots received: " ++ numOfBallots ++ "\n•Number of blank ballots (no candidates were selected):\n" ++
-                   "•Number of invalid ballots:\n•Round results:\n\t◦Number of 1’s that the candidate received at the moment of elimination\n"++
-                   "\t◦Round in which the candidate was eliminated.\n\t◦Use the following format: “Round <num>: <Candidate name> was eliminated with <num> #1’s”\n" ++
-                   "•Winner: " ++ winnerName ++ " wins with " ++ winnerVotes ++ " #1’s."
-
+    where string =
+    "•Number of ballots received: " ++ numOfBallots ++ "\n•Number of blank ballots (no candidates were selected): " ++ blankBallots ++
+    "\n•Number of invalid ballots: " ++ invalidBallots ++ "\n•Round results:\n\t◦Number of 1’s that the candidate received at the moment of elimination\n"++
+    "\t◦Round in which the candidate was eliminated.\n\t◦Use the following format: “Round <num>: <Candidate name> was eliminated with <num> #1’s”\n" ++
+    "•Winner: " ++ winnerName ++ " wins with " ++ winnerVotes ++ " #1’s."
