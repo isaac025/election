@@ -17,7 +17,7 @@ runElection candidatesFile ballotsFile= do
     let ballots = createBallots $ organizeBallots ballotsContents
     let ballotVotes = map ranks ballots
     let candidates = createCandidates (organizeCandidates candidatesContents) ballotVotes
-    output (show $ (winner candidates (totalBallots ballots))) (show $ numberOfVotesOf (head candidates) 1)
+    output (show $ totalBallots ballots) (show 0) (show 0) (show $ (winner candidates (totalBallots ballots))) (show $ numberOfVotesOf (head candidates) 1)
 
 organizeCandidates :: String -> [(String,Int)]
 organizeCandidates candidates = toTuple $ toList candidates

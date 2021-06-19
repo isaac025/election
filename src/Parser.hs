@@ -56,13 +56,14 @@ makeBallotsIntegers :: [[String]] -> [[Int]]
 makeBallotsIntegers xs = map (\x -> map (\y -> read y :: Int) x) xs
 
 -- Desired output from the problem statement
-output :: String -> String -> IO ()
-output winnerName winnerVotes = do
+output :: String -> String -> String -> String -> String -> IO ()
+output numBallots blankBallots invalidBallots winner winnerVotes = do
   let file = "/home/isaac/Projects/training/election/res/output.txt"
-  writeFile file string
+  writeFile file (line1 ++ line2 ++ line4)
   contents <- readFile file
   putStrLn contents
-    where string = "Winner: " ++ winnerName ++ "Votes: "
+    where line1 = "Number of Ballots received: " ++ numBallots
+          line2 = "\nNumber of Blank Ballots: " ++ blankBallots ++ "\nNumber of Invalid Ballots: " ++ invalidBallots
+          line3 = "\nRound results" ++ "\n\t"
+          line4 = "\nWinner: " ++ winner ++ "with " ++ winnerVotes
 
-finalOutput :: String
-finalOutput = "Number of ballots: " ++ "Number of blank ballots: " ++ "Number of invalid ballots: "
