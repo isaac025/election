@@ -17,3 +17,4 @@ data Ballot = Ballot
     , ranks    :: [(Int,Int)]
     } deriving (Show, Eq)
 
+

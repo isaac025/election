@@ -17,7 +17,7 @@ runElection candidatesFile ballotsFile= do
     let ballots = createBallots $ organizeBallots ballotsContents
     let ballotVotes = map ranks ballots
     let candidates = createCandidates (organizeCandidates candidatesContents) ballotVotes
-    output (totalBallots ballots) (show $ eliminate candidates) (show $ numberOfVotesOf (head candidates) 1)
+    output (show $ (winner candidates (totalBallots ballots))) (show $ numberOfVotesOf (head candidates) 1)
 
 organizeCandidates :: String -> [(String,Int)]
 organizeCandidates candidates = toTuple $ toList candidates
@@ -25,15 +25,32 @@ organizeCandidates candidates = toTuple $ toList candidates
 organizeBallots :: String -> [(Int, [(Int,Int)])]
 organizeBallots ballots = convert $ makeBallotsIntegers $ map (ballotParser (==':')) (toList ballots)
 
-totalBallots :: [Ballot] -> String
-totalBallots ballots = show $ ballotID $ last ballots
+totalBallots :: [Ballot] -> Int
+totalBallots ballots = ballotID $ last ballots
 
 numberOfVotesOf :: Candidate -> Int -> Int
 numberOfVotesOf candidate rank = length $ filter (==rank) (votes candidate)
 
 isWinner :: Candidate -> Int -> Bool
-isWinner candidate total = (div total (numberOfVotesOf candidate 1)) < 2
+isWinner c total = ((numberOfVotesOf c 1) `div` total) < 2
 
-eliminate :: [Candidate] -> [Candidate]
-eliminate xs = [x | x <- xs, x /= lowest]
-    where lowest ls = length $ L.minimumBy (compare `F.on` length) (map votes ls)
+winner :: [Candidate] -> Int -> Candidate
+winner (x:xs) total = case (isWinner x total) of
+                  True  -> x
+                  False -> winner (eliminate lowest xs) total
+                    where lowest = x
+
+eliminated :: Candidate -> [Candidate] -> Candidate
+eliminated c (x:xs)
+  | (numberOfVotesOf c 1) > (numberOfVotesOf x 1) = eliminated x xs
+  | (numberOfVotesOf c 1) < (numberOfVotesOf x 1) = eliminated c xs
+  | (numberOfVotesOf c 1) == (numberOfVotesOf x 1) = eliminated (lowest x c 2) xs
+  where lowest x c n
+          | (numberOfVotesOf c n) < (numberOfVotesOf x n) = c
+          | (numberOfVotesOf c n) > (numberOfVotesOf x n) = x
+          | otherwise = lowest x c (n+1)
+eliminated x _ = x
+
+eliminate :: Candidate -> [Candidate] -> [Candidate]
+eliminate c xs = [x | x <- xs , x /= (eliminated c xs)]
+
